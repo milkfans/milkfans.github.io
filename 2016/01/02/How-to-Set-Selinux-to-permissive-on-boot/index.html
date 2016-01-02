@@ -1,0 +1,346 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[How to] Set Selinux to permissive on boot | Milkfans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Milkfans">
+    
+    <meta name="description" content="[How to] Set Selinux to permissive on boot
+安全增强式Linux（SELinux, Security-Enhanced Linux）是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle o">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="hentainomilk" />
+    <meta name="twitter:title" content="[How to] Set Selinux to permissive on boot | Milkfans" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Milkfans" title="Milkfans"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Milkfans">Milkfans</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+					<li>
+					
+					<form class="search" action="//baidu.com/s" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="wd" autocomplete="off" maxlength="20" placeholder="搜索" />
+                        <input name=tn type=hidden value="bds">
+                        <input name=cl type=hidden value="3">
+                        <input name=ct type=hidden value="2097152">
+						<input type="hidden" name="si" value="yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/" title="[How to] Set Selinux to permissive on boot" itemprop="url">[How to] Set Selinux to permissive on boot</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Milkfans">Milkfans</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-01-02T11:37:02.000Z" itemprop="datePublished">2016-01-02</time>
+    
+  </p>
+</header>
+
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5BHow_to_5D_Set_Selinux_to_permissive_on_boot"><span class="toc-number">1.</span> <span class="toc-text">[How to] Set Selinux to permissive on boot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u64CD_u4F5C_u73AF_u5883"><span class="toc-number">1.1.</span> <span class="toc-text">操作环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E34_u65F6_u4FEE_u6539selinux_u72B6_u6001"><span class="toc-number">1.2.</span> <span class="toc-text">临时修改selinux状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6BCF_u6B21_u5F00_u673A_u65F6_u81EA_u52A8_u4FEE_u6539selinux_u72B6_u6001"><span class="toc-number">1.3.</span> <span class="toc-text">每次开机时自动修改selinux状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+		</div>
+		
+		<h1 id="5BHow_to_5D_Set_Selinux_to_permissive_on_boot"><a href="#5BHow_to_5D_Set_Selinux_to_permissive_on_boot" class="headerlink" title="[How to] Set Selinux to permissive on boot"></a>[How to] Set Selinux to permissive on boot</h1><blockquote>
+<p>安全增强式Linux（SELinux, Security-Enhanced Linux）是一种强制访问控制（mandatory access control）的实现。它的作法是以最小权限原则（principle of least privilege）为基础，在Linux核心中使用Linux安全模块（Linux Security Modules）。它并非一个Linux发行版，而是一组可以应用在类Unix操作系统（如Linux、BSD等）的修改。<br>——维基百科</p>
+</blockquote>
+<p>简而言之，android内的selinux是一种保护机制（其实咱看不懂上面那段话），然而有些软件只能运行在selinux状态为permissive的状态下,比如说ViPer4Android，下面就简单说下如何修改selinux状态</p>
+<h2 id="u64CD_u4F5C_u73AF_u5883"><a href="#u64CD_u4F5C_u73AF_u5883" class="headerlink" title="操作环境"></a>操作环境</h2><p>htc m8t<br>android 5.02<br>HTC sense 6.0<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### General Root Test ###</span><span class="comment">##</span></span><br><span class="line"><span class="attribute">Result</span>:</span><br><span class="line">   Root available!</span><br><span class="line"><span class="attribute">Extras</span>:</span><br><span class="line">   su binary launches a shell.</span><br><span class="line">   Root UID obtained.</span><br><span class="line"><span class="comment">##### General Root Test ###</span><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### SuperUser App Test ###</span><span class="comment">##</span></span><br><span class="line"><span class="attribute">Result</span>:</span><br><span class="line">   Superuser app found</span><br><span class="line"><span class="attribute">Extras</span>:</span><br><span class="line">   eu.chainfire.supersu @ <span class="number">2.46</span> (<span class="number">246</span>)</span><br><span class="line">/system/app/SuperSU/SuperSU.apk</span><br><span class="line"><span class="comment">##### SuperUser App Test ###</span><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### SuBinary Test ###</span><span class="comment">##</span></span><br><span class="line"><span class="attribute">Result</span>:</span><br><span class="line">   Superuser binary</span><br><span class="line"><span class="attribute">Extras</span>:</span><br><span class="line">   su binary <span class="keyword">is</span> avaiable via $PATH.</span><br><span class="line">   <span class="number">2.45</span> SUPERSU</span><br><span class="line">-rwxr-xr-x root root</span><br><span class="line">/system/xbin/su</span><br><span class="line"><span class="comment">##### SuBinary Test ###</span><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### BusyBox Test ###</span><span class="comment">##</span></span><br><span class="line"><span class="attribute">Result</span>:</span><br><span class="line">   Busybox found</span><br><span class="line"><span class="attribute">Extras</span>:</span><br><span class="line">   Primary busybox <span class="keyword">is</span> avaiable via $PATH.</span><br><span class="line">   Primary busybox offers most common applets.</span><br><span class="line">   v1<span class="number">.23</span><span class="number">.1</span>-Stericson, <span class="number">272</span> applets.</span><br><span class="line">-rwxr-xr-x root root</span><br><span class="line">/system/xbin/busybox</span><br><span class="line"><span class="comment">##### BusyBox Test ###</span><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment">##### SELinux Test ###</span><span class="comment">##</span></span><br><span class="line"><span class="attribute">Result</span>:</span><br><span class="line">   SELinux <span class="keyword">is</span> enforcing</span><br><span class="line"><span class="attribute">Extras</span>:</span><br><span class="line"><span class="comment">##### SELinux Test ###</span><span class="comment">##</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="u4E34_u65F6_u4FEE_u6539selinux_u72B6_u6001"><a href="#u4E34_u65F6_u4FEE_u6539selinux_u72B6_u6001" class="headerlink" title="临时修改selinux状态"></a>临时修改selinux状态</h2><p>临时修改selinux的方法非常简单，首先手机已root并安装busybox,然后安装终端模拟器，在终端内输入<br><code>su root</code><br><code>getenforce</code><br>获取selinux状态<br><code>setenforce 0</code><br>此命令可修改selinux状态为permissive</p>
+<hr>
+<p><code>setenforce 1</code><br>此命令可修改selinux状态为enforcing</p>
+<hr>
+<p>这种修改在手机重新启动后selinux会恢复默认enforcing状态</p>
+<h2 id="u6BCF_u6B21_u5F00_u673A_u65F6_u81EA_u52A8_u4FEE_u6539selinux_u72B6_u6001"><a href="#u6BCF_u6B21_u5F00_u673A_u65F6_u81EA_u52A8_u4FEE_u6539selinux_u72B6_u6001" class="headerlink" title="每次开机时自动修改selinux状态"></a>每次开机时自动修改selinux状态</h2><p><strong>方法来自<a href="http://forum.xda-developers.com/nexus-6/general/xposed-issues-nexus-6-try-t3030220/post58885390#post58885390" target="_blank" rel="external">XDA</a>讨论</strong><br>普通手机直接按照超链接中的方法操作即可，但htc手机对system有写保护，重启后更改会消失，可以在rec下按如下步骤操作<br>首先装好手机驱动和adb工具，然后打开手机usb调试，并用usb连接手机和电脑,打开”双击此处开始.bat”<br><code>E:\adb&gt;adb reboot recovery</code><br>手机重启进入rec<br><code>E:\adb&gt;adb root</code><br><code>error: device not found</code><br>重启后输入命令若出现此错误，请重新连接usb<br><code>E:\adb&gt;adb root</code><br><code>adbd is already running as root</code><br>获取root<br><strong>需要说明的是”~ # [6n”是提示符，提示符后面才是输入的命令，命令成功执行会回显输入的内容</strong><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">E</span>:\adb&gt;adb <span class="keyword">shell</span></span><br><span class="line">~ # [6nmount -o rw /system</span><br><span class="line">mount -o rw /system</span><br><span class="line">~ # [6nmkdir /system/<span class="keyword">su</span>.<span class="literal">d</span></span><br><span class="line"><span class="keyword">mkdir</span> /system/<span class="keyword">su</span>.<span class="literal">d</span></span><br><span class="line">~ # [6necho <span class="string">"#!/system/bin/sh"</span> &gt; /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">echo <span class="string">"#!/system/bin/sh"</span> &gt; /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">~ # [6necho <span class="string">"echo 0 &gt; /sys/fs/selinux/enforce"</span> &gt;&gt; /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">echo <span class="string">"echo 0 &gt; /sys/fs/selinux/enforce"</span> &gt;&gt; /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">~ # [6nchmod 755 /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">chmod 755 /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">~ # [6nls -al /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">ls</span> -al /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">-rwxr-xr-x root     root           50 2016-01-02 11:20 permissive.<span class="keyword">sh</span></span><br><span class="line">~ # [6ncat /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line"><span class="keyword">cat</span> /system/<span class="keyword">su</span>.<span class="keyword">d</span>/permissive.<span class="keyword">sh</span></span><br><span class="line">#!/system/bin/<span class="keyword">sh</span></span><br><span class="line">echo 0 &gt; /sys/fs/selinux/enforce</span><br><span class="line">~ # [6nexit</span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure></p>
+<p>至此已修改完毕<br><code>E:\adb&gt;adb reboot</code><br>重启手机</p>
+<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>这样简单的几步就能成功的修改selinux状态，当然除了用adb工具外也可以利用twrp自带的终端来执行命令完成修改过程(不支持cd命令，只能先进入文件夹再执行，略蛋疼)，如果你还是觉得繁琐那就期待有人把它做成zip卡刷补丁包吧，反正咱这只渣渣是不会啦！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/android/">android</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/经验/">经验</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/" data-title="[How to] Set Selinux to permissive on boot | Milkfans" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/01/元旦快乐！/"  title="元旦快乐！">
+ <strong>NEXT:</strong><br/> 
+ <span>元旦快乐！
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5BHow_to_5D_Set_Selinux_to_permissive_on_boot"><span class="toc-number">1.</span> <span class="toc-text">[How to] Set Selinux to permissive on boot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#u64CD_u4F5C_u73AF_u5883"><span class="toc-number">1.1.</span> <span class="toc-text">操作环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E34_u65F6_u4FEE_u6539selinux_u72B6_u6001"><span class="toc-number">1.2.</span> <span class="toc-text">临时修改selinux状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6BCF_u6B21_u5F00_u673A_u65F6_u81EA_u52A8_u4FEE_u6539selinux_u72B6_u6001"><span class="toc-number">1.3.</span> <span class="toc-text">每次开机时自动修改selinux状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u603B_u7ED3"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/经验/" title="经验">经验<sup>2</sup></a></li>
+		
+			<li><a href="/categories/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/EsrXP/" title="EsrXP">EsrXP<sup>1</sup></a></li>
+		
+			<li><a href="/tags/android/" title="android">android<sup>1</sup></a></li>
+		
+			<li><a href="/tags/字幕/" title="字幕">字幕<sup>1</sup></a></li>
+		
+			<li><a href="/tags/测试/" title="测试">测试<sup>1</sup></a></li>
+		
+			<li><a href="/tags/随笔/" title="随笔">随笔<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://twitter.com/hentainomilk" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/milkfans" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2016 
+		
+		<a href="http://yoursite.com" target="_blank" title="Milkfans">Milkfans</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://b.bshare.cn/barCode?site=weixin&url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
+
