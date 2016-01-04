@@ -3,9 +3,9 @@
   <title><![CDATA[Milkfans]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://www.milkfans.info/"/>
   <updated>2016-01-02T13:15:05.584Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://www.milkfans.info/</id>
   
   <author>
     <name><![CDATA[Milkfans]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[[How to] Set Selinux to permissive on boot]]></title>
-    <link href="http://yoursite.com/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/"/>
-    <id>http://yoursite.com/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/</id>
+    <link href="http://www.milkfans.info/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/"/>
+    <id>http://www.milkfans.info/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/</id>
     <published>2016-01-02T11:37:02.000Z</published>
     <updated>2016-01-02T13:15:05.584Z</updated>
     <content type="html"><![CDATA[<h1 id="5BHow_to_5D_Set_Selinux_to_permissive_on_boot"><a href="#5BHow_to_5D_Set_Selinux_to_permissive_on_boot" class="headerlink" title="[How to] Set Selinux to permissive on boot"></a>[How to] Set Selinux to permissive on boot</h1><blockquote>
@@ -38,16 +38,16 @@
     <![CDATA[<h1 id="5BHow_to_5D_Set_Selinux_to_permissive_on_boot"><a href="#5BHow_to_5D_Set_Selinux_to_permissive_on_boot" class="headerlink" title="[H]]>
     </summary>
     
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+      <category term="android" scheme="http://www.milkfans.info/tags/android/"/>
     
-      <category term="经验" scheme="http://yoursite.com/categories/%E7%BB%8F%E9%AA%8C/"/>
+      <category term="经验" scheme="http://www.milkfans.info/categories/%E7%BB%8F%E9%AA%8C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[元旦快乐！]]></title>
-    <link href="http://yoursite.com/2016/01/01/%E5%85%83%E6%97%A6%E5%BF%AB%E4%B9%90%EF%BC%81/"/>
-    <id>http://yoursite.com/2016/01/01/元旦快乐！/</id>
+    <link href="http://www.milkfans.info/2016/01/01/%E5%85%83%E6%97%A6%E5%BF%AB%E4%B9%90%EF%BC%81/"/>
+    <id>http://www.milkfans.info/2016/01/01/元旦快乐！/</id>
     <published>2016-01-01T13:25:01.000Z</published>
     <updated>2016-01-02T13:12:43.379Z</updated>
     <content type="html"><![CDATA[<h1 id="u8FD9_u662F_u4E00_u7BC7_u6CA1_u4EC0_u4E48_u5375_u7528_u7684_u6D4B_u8BD5_u6587__28_3A_u0437_u300D_u2220_29"><a href="#u8FD9_u662F_u4E00_u7BC7_u6CA1_u4EC0_u4E48_u5375_u7528_u7684_u6D4B_u8BD5_u6587__28_3A_u0437_u300D_u2220_29" class="headerlink" title="这是一篇没什么卵用的测试文_(:з」∠)__"></a>这是一篇没什么卵用的测试文_(:з」∠)__</h1><hr>
@@ -62,18 +62,18 @@
     <![CDATA[<h1 id="u8FD9_u662F_u4E00_u7BC7_u6CA1_u4EC0_u4E48_u5375_u7528_u7684_u6D4B_u8BD5_u6587__28_3A_u0437_u300D_u2220_29"><a href="#u8FD9_u662F_u4E]]>
     </summary>
     
-      <category term="测试" scheme="http://yoursite.com/tags/%E6%B5%8B%E8%AF%95/"/>
+      <category term="测试" scheme="http://www.milkfans.info/tags/%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://www.milkfans.info/tags/%E9%9A%8F%E7%AC%94/"/>
     
-      <category term="随笔" scheme="http://yoursite.com/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="http://www.milkfans.info/categories/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[EsrXP提取内嵌字幕]]></title>
-    <link href="http://yoursite.com/2015/12/29/EsrXP%E6%8F%90%E5%8F%96%E5%86%85%E5%B5%8C%E5%AD%97%E5%B9%95/"/>
-    <id>http://yoursite.com/2015/12/29/EsrXP提取内嵌字幕/</id>
+    <link href="http://www.milkfans.info/2015/12/29/EsrXP%E6%8F%90%E5%8F%96%E5%86%85%E5%B5%8C%E5%AD%97%E5%B9%95/"/>
+    <id>http://www.milkfans.info/2015/12/29/EsrXP提取内嵌字幕/</id>
     <published>2015-12-29T11:03:59.000Z</published>
     <updated>2016-01-02T13:13:27.978Z</updated>
     <content type="html"></content>
@@ -81,18 +81,18 @@
     
     </summary>
     
-      <category term="EsrXP" scheme="http://yoursite.com/tags/EsrXP/"/>
+      <category term="EsrXP" scheme="http://www.milkfans.info/tags/EsrXP/"/>
     
-      <category term="字幕" scheme="http://yoursite.com/tags/%E5%AD%97%E5%B9%95/"/>
+      <category term="字幕" scheme="http://www.milkfans.info/tags/%E5%AD%97%E5%B9%95/"/>
     
-      <category term="经验" scheme="http://yoursite.com/categories/%E7%BB%8F%E9%AA%8C/"/>
+      <category term="经验" scheme="http://www.milkfans.info/categories/%E7%BB%8F%E9%AA%8C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
-    <link href="http://yoursite.com/2015/12/29/hello-world/"/>
-    <id>http://yoursite.com/2015/12/29/hello-world/</id>
+    <link href="http://www.milkfans.info/2015/12/29/hello-world/"/>
+    <id>http://www.milkfans.info/2015/12/29/hello-world/</id>
     <published>2015-12-29T08:11:36.062Z</published>
     <updated>2015-12-29T08:11:36.062Z</updated>
     <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
