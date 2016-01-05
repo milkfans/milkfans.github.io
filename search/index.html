@@ -1,10 +1,10 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
-    <title>Category: 随笔 | Milkfans</title>
+    <title>search | Milkfans</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Milkfans">
@@ -15,7 +15,7 @@
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="hentainomilk" />
-    <meta name="twitter:title" content="Category: 随笔 | Milkfans" />
+    <meta name="twitter:title" content="search | Milkfans" />
       
     
     
@@ -69,66 +69,29 @@
 
       </header>
       <div id="container">
-        
-
-<div class="archive-title" >
-  <h2 class="category-icon">随笔</h2>
-  
+        <% if(theme.google_cse.enable) { %>
+<div  id="main" class="page">
+  <div id='cse' style='width:100%;text-align:center'>正在加载搜索结果，请稍等。</div>
 </div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2016/01/01/元旦快乐！/" title="元旦快乐！" itemprop="url">
-  
-    <h1 itemprop="name">元旦快乐！</h1>
-    
-    <time datetime="2016-01-01T13:25:01.000Z" itemprop="datePublished">2016-01-01</time>
-  </a>
-</section>
-
-
-  </div>
-</div>
+<script src="http://www.google.com.hk/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+google.load('search', '1', {language : 'zh-CN',style: google.loader.themes.MINIMALIST});
+google.setOnLoadCallback(function(){
+  var customSearchControl = new google.search.CustomSearchControl('<%= theme.google_cse.cx %>');
+  customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+  var options = new google.search.DrawOptions();
+  options.setAutoComplete(true);
+  customSearchControl.draw('cse', options);
+  var match = location.search.match(/q=([^&]*)(&|$)/);
+  if(match && match[1]){
+    var search = decodeURIComponent(match[1]); 
+    customSearchControl.execute(search);
+  }
+},true);
+</script>
+<% } %>
 
       </div>
-      <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2935018923" target="_blank" title="weibo"></a>
-		
-		
-		<a href="https://twitter.com/hentainomilk" target="_blank" title="twitter"></a>
-		
-		
-		<a href="https://github.com/milkfans" target="_blank" title="github"></a>
-		
-		
-	</div>
-		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wizicer/iceman" target="_blank" title="Iceman">Iceman</a> © 2016 
-		
-		<a href="http://www.milkfans.info" target="_blank" title="Milkfans">Milkfans</a>
-		
-		</p>
-</div>
-
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install','JxzgsjjU8dcDDerHBoXq','2.0.0');
-</script>
-</footer>
       <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 
