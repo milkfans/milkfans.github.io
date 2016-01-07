@@ -19,7 +19,7 @@
       
     
     
-    <link rel="alternate" href="atom.xml" title="Milkfans" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Milkfans" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -57,14 +57,16 @@
 					
 						<li><a href="/tags">Tags</a></li>
 					
-						<li><a href="sitemap.xml">Sitemap</a></li>
+						<li><a href="/sitemap.xml">Sitemap</a></li>
 					
 					<li>
 					
 					
-					<form action="/search/index.html">
-						<input type="text" name="q" id="tipue_search_input" autocomplete="off" required>
-						</form>
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="tipue_search_input" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+						
 					
 					
 					</li>
