@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.milkfans.info/about/index.html</loc>
+    <lastmod>2016-01-07T11:55:12.260Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.milkfans.info/2016/01/02/How-to-Set-Selinux-to-permissive-on-boot/</loc>
     <lastmod>2016-01-06T04:23:24.421Z</lastmod>
   </url>
