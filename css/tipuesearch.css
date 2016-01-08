@@ -6,7 +6,7 @@ Tipue Search is released under the MIT License
 http://www.tipue.com/search
 */
 @media only screen
-and (max-device-width : 480px) {
+and (max-device-width : 640px) {
 #tipue_search_content
 {
     box-shadow: 5px 5px 5px #888888;
@@ -17,7 +17,7 @@ and (max-device-width : 480px) {
 }
 }
 @media only screen
-and (min-device-width : 481px)
+and (min-device-width : 641px)
 {#tipue_search_content
 {
     box-shadow: 5px 5px 5px #888888;
