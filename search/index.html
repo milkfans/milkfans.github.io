@@ -59,15 +59,7 @@
 $(document).ready(function() {
 $('#tipue_search_input').tipuesearch({
 });
-function validatorNull(){
-     var t=document.getElementById("test_id");
-     if(t.value.trim()==""){
-        alert("关键字不能为空");
-        t.focus();
-        return;
-     }
-}
-  $('.navbar').click(function(){
+$('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });
   var myWidth = 0;
